@@ -117,4 +117,7 @@ gradle-app.setting
 
 # jmix
 .jmix/
+/.ideaDataSources/
+/dataSources/
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij+iml,gradle!/.idea/
