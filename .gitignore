@@ -115,4 +115,9 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+# jmix
+.jmix/
+/.ideaDataSources/
+/dataSources/
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij+iml,gradle!/.idea/
