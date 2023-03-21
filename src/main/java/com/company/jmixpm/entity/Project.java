@@ -55,14 +55,6 @@ public class Project {
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   private User manager;
 
-  public List<Task> getTasks() {
-    return tasks;
-  }
-
-  public void setTasks(List<Task> tasks) {
-    this.tasks = tasks;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

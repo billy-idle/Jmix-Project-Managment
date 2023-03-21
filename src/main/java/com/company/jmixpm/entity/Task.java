@@ -6,6 +6,7 @@ import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JmixEntity
 @Table(name = "TASK_", indexes = {
     @Index(name = "IDX_TASK__ASSIGNEE", columnList = "ASSIGNEE_ID"),
@@ -51,51 +56,20 @@ public class Task {
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   private Project project;
 
-  public Project getProject() {
-    return project;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Task)) {
+      return false;
+    }
+    Task task = (Task) o;
+    return id.equals(task.id);
   }
 
-  public void setProject(Project project) {
-    this.project = project;
-  }
-
-  public Integer getEstimatedEfforts() {
-    return estimatedEfforts;
-  }
-
-  public void setEstimatedEfforts(Integer estimatedEfforts) {
-    this.estimatedEfforts = estimatedEfforts;
-  }
-
-  public LocalDateTime getStartDate() {
-    return startDate;
-  }
-
-  public void setStartDate(LocalDateTime startDate) {
-    this.startDate = startDate;
-  }
-
-  public User getAssignee() {
-    return assignee;
-  }
-
-  public void setAssignee(User assignee) {
-    this.assignee = assignee;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public UUID getId() {
-    return id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 }
